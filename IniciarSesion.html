@@ -1,16 +1,16 @@
 <?php
 session_start();
-require('conexion.php');
+require('conexion.html');
 
 if(isset($_POST['Usuario']) && isset($_POST['Clave'])){
     $Usuario = $_POST['Usuario'];
     $Clave = $_POST['Clave'];
 
     if(empty($Usuario)){
-        header("Location: index.php?error=El usuario es requerido");
+        header("Location: index.html?error=El usuario es requerido");
         exit();
     } elseif(empty($Clave)) {
-        header("Location: index.php?error=La clave es requerida");
+        header("Location: index.html?error=La clave es requerida");
         exit();
     } else {
         // No es necesario usar md5, usa métodos seguros de cifrado de contraseñas
@@ -27,19 +27,19 @@ if(isset($_POST['Usuario']) && isset($_POST['Clave'])){
                 $_SESSION['Usuario'] = $row['Usuario'];
                 $_SESSION['Nombre_Completo'] = $row['Nombre_Completo'];
                 $_SESSION['Id'] = $row['Id'];
-                header("Location: inicio.php");
+                header("Location: inicio.html");
                 exit();
             } else {
-                header("Location: index.php?error=Usuario o clave incorrecta");
+                header("Location: index.html?error=Usuario o clave incorrecta");
                 exit();
             }
         } else {
-            header("Location: index.php?error=Usuario o clave incorrecta");
+            header("Location: index.html?error=Usuario o clave incorrecta");
             exit();
         }
     }
 } else {
-    header("Location: index.php");
+    header("Location: index.html");
     exit();
 }
 ?>
